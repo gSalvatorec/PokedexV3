@@ -43,7 +43,7 @@
                     <div class="card-body">
                         <h5 class="card-title">bulbasaur</h5>
                         <p class="card-text fs-4"><img class="img-fluid" src="./src/img/icono-pokedex.png" alt="">#001</p>
-                        <a href="#" class="btn btn-primary btn-lg" aria-label="#dataModal">Sobre el</a>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">Srobre el</button>
                     </div>
                 </div>
                 <div class="card col-4 me-2 mb-2" style="width: 18rem;">
@@ -140,7 +140,47 @@
     <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content dexi">
-            
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="namePoke">bulbasaur</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="card  w-100 mb-3" style="width: 18rem;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" class="img-fluid rounded-start" alt="Imagen de Pokemon ${data.data.name}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Descripcion</h5>
+                            <p class="card-text lead">Una rara semilla le fue plantada en el lomo al nacer.\nLa planta brota y crece con este Pokémon.</p>
+                            <p class="card-text"><small class="text-body-secondary">Pokémon Semilla</small></p>
+                            <ul class="list-group list-group-horizontal fs-4 justify-content-center">
+                              <li class="list-group-item lead">
+                                <img src="./src/img/heart-solid.svg" alt="">45
+                                
+                              </li>
+                              <li class="list-group-item lead">
+                                <img src="./src/img/hand-fist-solid.svg" alt="">
+                                49
+                              </li>
+                              <li class="list-group-item lead">
+                                <img src="./src/img/shield-solid.svg" alt="">
+                                  49
+                              </li>
+                              <li class="list-group-item lead">
+                                <img src="./src/img/feather-solid.svg" alt="">
+                                  45
+                              </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
         </div>
         </div>
     </div>
