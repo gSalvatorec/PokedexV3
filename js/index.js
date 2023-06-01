@@ -4,6 +4,7 @@ const pagination = null || document.querySelector('#paginacion');//Esta es la va
 const contenedor = null || document.querySelector('#contPokemon')//Variable que utilizamos para imprimir los datos en pantalla
 let btnNext,btnPrevious,btnInicio; // Variables de nuestros botones para asignar valores e imprimirlos en pantalla
 //Comenzamos con la programacion para obtener los datos de los pokemon mediante async await
+const Spinner = null || document.querySelector('#Spinner');
 const getPokemon = async (urlApi) =>{
     try{
         const response = await fetch(urlApi);
@@ -21,6 +22,9 @@ const getPokemon = async (urlApi) =>{
 getPokemon(`${API}/?limit=12&offset=0`)
  //Comenzaremos a hacer la funcion para obtener todos los datos del pokemon
  const dataPoke = async(data) => {
+    Spinner.style.visibility = 'visible';//Se muestra el spinner y se oculta el contenedor y la paginacion
+    contenedor.style.visibility = 'hidden';
+    pagination.style.visibility = 'hidden';
     try{
         for(let index of data){//Iteramos sobre la data que nos trae el documento
             const response = await fetch(index.url); // realizamos fetch a cada dato que obtenemos como url
@@ -33,12 +37,13 @@ getPokemon(`${API}/?limit=12&offset=0`)
                     <div class="card-body">
                         <h5 class="card-title">${name}</h5>
                         <p class="card-text fs-4"><img class="img-fluid" src="./src/img/icono-pokedex.png" alt="Imagen de Pokebola">${id}</p>
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">Srobre el</button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal" id="${id}">Srobre el</button>
                     </div>
                 </div>
             `;
-            contenedor.innerHTML += vista;
+            contenedor.innerHTML += vista;//Comenzamos a agregar la vista a nuestro contenedor, siempre sumando para que muestre todo
         }
+        await Loader();//Una vez cargadas las 12 cards llama a Loader para que muestre todo
     }catch(error){
         console.error(error);
     }
@@ -52,3 +57,14 @@ getPokemon(`${API}/?limit=12&offset=0`)
         getPokemon(value); //Volvemos a llamar a getPokemon para que nos muestre los siguientes pokemon
     }
  })
+const Loader = async () =>{
+    return new Promise((resolve,reject) =>{
+        setTimeout(()=>{
+            resolve('Resuelto');
+            Spinner.style.visibility = 'hidden';//Ocultamos el spinner y MoStramos el contenedor y la paginacion
+            contenedor.style.visibility = 'visible';
+            pagination.style.visibility = 'visible';
+        },1500);
+        
+    })
+}
